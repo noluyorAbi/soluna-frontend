@@ -1,7 +1,7 @@
 // app/clan-activity/route.ts
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(_request: Request) {
   try {
     // API-Request durchführen
     const apiRes = await fetch(
