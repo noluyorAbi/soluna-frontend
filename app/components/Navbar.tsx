@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Transition } from "@headlessui/react"; // Ensure Headless UI is installed
+import { Transition } from "@headlessui/react";
+import React from "react";
 
 const Navbar: React.FC = () => {
   // Dark Mode State
@@ -65,6 +66,8 @@ const Navbar: React.FC = () => {
           <Link
             href="https://discord.com/invite/G2Br635S4B"
             className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Discord
           </Link>
@@ -226,6 +229,7 @@ const MobileMenu: React.FC = () => {
       </button>
       <Transition
         show={isOpen}
+        as={React.Fragment}
         enter="transition ease-out duration-200 transform"
         enterFrom="opacity-0 scale-95"
         enterTo="opacity-100 scale-100"
@@ -233,44 +237,44 @@ const MobileMenu: React.FC = () => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        {(ref) => (
-          <div
-            ref={ref}
-            className="absolute top-20 right-0 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-4 z-50"
-          >
-            <nav>
-              <ul className="flex flex-col space-y-2 px-4">
-                <li>
-                  <Link
-                    href="/"
-                    className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Startseite
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/ueber_uns"
-                    className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Über uns
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://discord.com/invite/G2Br635S4B"
-                    className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Discord
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
+        <Transition.Child
+          as="div"
+          className="absolute top-20 right-0 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-4 z-50"
+        >
+          <nav>
+            <ul className="flex flex-col space-y-2 px-4">
+              <li>
+                <Link
+                  href="/"
+                  className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Startseite
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/ueber_uns"
+                  className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Über uns
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://discord.com/invite/G2Br635S4B"
+                  className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Discord
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </Transition.Child>
       </Transition>
     </div>
   );

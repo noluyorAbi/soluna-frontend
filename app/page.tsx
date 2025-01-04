@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Korrigierter Import
 import Head from "next/head";
-import Navbar from "./components/Navbar";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
