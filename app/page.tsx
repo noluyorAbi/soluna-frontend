@@ -45,7 +45,7 @@ export default function Home() {
             <div className="flex justify-center">
               <button
                 onClick={handleButtonClick}
-                className="bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 transition-colors duration-300"
+                className="bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-full shadow-lg  transform hover:scale-105 transition-all duration-300"
               >
                 Zum Aktivitäts-Plot
               </button>
@@ -85,70 +85,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </div>
-  );
-}
-
-// Komponente für das mobile Menü
-function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="lg:hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
-        aria-label="Toggle menu"
-      >
-        {/* Hamburger Icon */}
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {isOpen ? (
-            // Schließen Icon
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          ) : (
-            // Hamburger Icon
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          )}
-        </svg>
-      </button>
-      {isOpen && (
-        <nav className="mt-4">
-          <ul className="flex flex-col space-y-4">
-            <li>
-              <a
-                href="/ueber_uns"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-              >
-                Über Uns
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://discord.gg/G2Br635S4B"
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-              >
-                Kontakt
-              </a>
-            </li>
-          </ul>
-        </nav>
-      )}
     </div>
   );
 }
