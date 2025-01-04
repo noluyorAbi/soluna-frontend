@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Transition } from "@headlessui/react";
 import React from "react";
+import { MdLightMode, MdDarkMode } from "react-icons/md"; // Importing Sun and Moon icons from Heroicons
 
 const Navbar: React.FC = () => {
   // Dark Mode State
@@ -75,43 +76,19 @@ const Navbar: React.FC = () => {
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleDarkMode}
-            className="ml-4 p-2 bg-gray-200 dark:bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="ml-4 p-2 bg-gray-200 dark:bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
             aria-label="Toggle Dark Mode"
           >
             {isDark ? (
-              // Icon for Light Mode (Sun)
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-yellow-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <MdLightMode
+                className="h-6 w-6 "
                 aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707"
-                />
-              </svg>
+              />
             ) : (
-              // Icon for Dark Mode (Moon)
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <MdDarkMode
                 className="h-6 w-6 text-gray-800"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
                 aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"
-                />
-              </svg>
+              />
             )}
           </button>
         </nav>
@@ -126,38 +103,16 @@ const Navbar: React.FC = () => {
           >
             {isDark ? (
               // Icon for Light Mode (Sun)
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-yellow-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <MdLightMode
+                className="h-6 w-6 text-yellow-400"
                 aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707"
-                />
-              </svg>
+              />
             ) : (
               // Icon for Dark Mode (Moon)
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <MdDarkMode
                 className="h-6 w-6 text-gray-800"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
                 aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"
-                />
-              </svg>
+              />
             )}
           </button>
           <MobileMenu />
