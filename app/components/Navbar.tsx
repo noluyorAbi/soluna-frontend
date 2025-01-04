@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
           >
             {isDark ? (
               <MdLightMode
-                className="h-6 w-6 "
+                className="h-6 w-6 text-yellow-400"
                 aria-hidden="true"
               />
             ) : (
