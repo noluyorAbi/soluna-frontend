@@ -1,0 +1,33 @@
+{
+  "name": "soluna",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@material-tailwind/react": "^2.1.10",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.9",
+    "dompurify": "^3.2.3",
+    "next": "^15.0.3",
+    "plotly.js": "^2.35.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-plotly.js": "^2.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3"
+  }
+}
