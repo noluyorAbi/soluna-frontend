@@ -16,7 +16,6 @@ export default function Datenschutzrichtlinien() {
       </Head>
 
       {/* Navbar */}
-      <Navbar />
 
       {/* Hauptinhalt */}
       <main className="container mx-auto px-6 py-16 flex-grow">

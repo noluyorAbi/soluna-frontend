@@ -27,7 +27,6 @@ export default function Home() {
       </Head>
 
       {/* Navbar */}
-      <Navbar />
 
       {/* Hauptinhalt */}
       <main className="flex-grow flex flex-col items-center justify-center text-center px-4 py-8 sm:py-16">
