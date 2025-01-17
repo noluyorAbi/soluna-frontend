@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { ChevronRight, BarChart2, Users, Gift } from "lucide-react";
-import Navbar from "./components/Navbar";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
