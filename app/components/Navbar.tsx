@@ -1,15 +1,16 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Transition } from "@headlessui/react";
+import { motion } from "framer-motion";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 import React from "react";
-import { MdLightMode, MdDarkMode } from "react-icons/md"; // Importing Sun and Moon icons from Heroicons
 
 const Navbar: React.FC = () => {
-  // Dark Mode State
   const [isDark, setIsDark] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Initialize Dark Mode based on stored preference or system setting
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
@@ -19,15 +20,20 @@ const Navbar: React.FC = () => {
       setIsDark(false);
       document.documentElement.classList.remove("dark");
     } else {
-      // Fallback to system preference
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         setIsDark(true);
         document.documentElement.classList.add("dark");
       }
     }
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Toggle Dark Mode
   const toggleDarkMode = () => {
     if (isDark) {
       document.documentElement.classList.remove("dark");
@@ -40,96 +46,101 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-md transition-colors duration-500 fixed w-full z-50 h-16 lg:h-20">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center h-full">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-xl font-semibold text-blue-600 dark:text-blue-400"
-        >
-          SOLUNA Dashboard
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          <Link
-            href="/"
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-          >
-            Startseite
-          </Link>
-          <Link
-            href="/ueber_uns"
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-          >
-            Über uns
-          </Link>
-          <Link
-            href="https://discord.com/invite/G2Br635S4B"
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Discord
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-gray-900/90 backdrop-blur-sm shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          <Link href="/" className="text-2xl font-bold text-white">
+            SOLUNA
           </Link>
 
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleDarkMode}
-            className="ml-4 p-2 bg-gray-200 dark:bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
-            aria-label="Toggle Dark Mode"
-          >
-            {isDark ? (
-              <MdLightMode
-                className="h-6 w-6 text-yellow-400"
-                aria-hidden="true"
-              />
-            ) : (
-              <MdDarkMode
-                className="h-6 w-6 text-gray-800"
-                aria-hidden="true"
-              />
-            )}
-          </button>
-        </nav>
+          <nav className="hidden md:flex items-center space-x-8">
+            <NavLink href="/">Startseite</NavLink>
+            <NavLink href="/ueber_uns">Über uns</NavLink>
+            <NavLink href="https://discord.com/invite/G2Br635S4B" external>
+              Discord
+            </NavLink>
 
-        {/* Mobile Navigation */}
-        <div className="lg:hidden flex items-center">
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleDarkMode}
-            className="mr-4 p-2 bg-gray-200 dark:bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Toggle Dark Mode"
-          >
-            {isDark ? (
-              // Icon for Light Mode (Sun)
-              <MdLightMode
-                className="h-6 w-6 text-yellow-400"
-                aria-hidden="true"
-              />
-            ) : (
-              // Icon for Dark Mode (Moon)
-              <MdDarkMode
-                className="h-6 w-6 text-gray-800"
-                aria-hidden="true"
-              />
-            )}
-          </button>
-          <MobileMenu />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={toggleDarkMode}
+              className="p-2 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-300"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDark ? (
+                <MdLightMode
+                  className="h-5 w-5 text-yellow-400"
+                  aria-hidden="true"
+                />
+              ) : (
+                <MdDarkMode
+                  className="h-5 w-5 text-gray-300"
+                  aria-hidden="true"
+                />
+              )}
+            </motion.button>
+          </nav>
+
+          <div className="md:hidden flex items-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={toggleDarkMode}
+              className="mr-4 p-2 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-300"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDark ? (
+                <MdLightMode
+                  className="h-5 w-5 text-yellow-400"
+                  aria-hidden="true"
+                />
+              ) : (
+                <MdDarkMode
+                  className="h-5 w-5 text-gray-300"
+                  aria-hidden="true"
+                />
+              )}
+            </motion.button>
+            <MobileMenu />
+          </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
-export default Navbar;
+const NavLink: React.FC<{
+  href: string;
+  children: React.ReactNode;
+  external?: boolean;
+}> = ({ href, children, external = false }) => (
+  <Link
+    href={href}
+    className="text-gray-300 hover:text-white transition-colors duration-200"
+    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+  >
+    <motion.span
+      whileHover={{ y: -2 }}
+      transition={{ type: "spring", stiffness: 300, damping: 10 }}
+    >
+      {children}
+    </motion.span>
+  </Link>
+);
 
-// Mobile Menu Component
 const MobileMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close the menu when clicking outside
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
@@ -147,41 +158,39 @@ const MobileMenu: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <div className="relative ml-4" ref={menuRef}>
-      <button
+    <div className="relative" ref={menuRef}>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+        className="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full p-2"
         aria-label="Toggle menu"
         aria-expanded={isOpen}
       >
-        {/* Hamburger Icon */}
         <svg
           className="w-6 h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
         >
           {isOpen ? (
-            // Close Icon (X)
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
               d="M6 18L18 6M6 6l12 12"
-            ></path>
+            />
           ) : (
-            // Hamburger Icon (three lines)
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
               d="M4 6h16M4 12h16M4 18h16"
-            ></path>
+            />
           )}
         </svg>
-      </button>
+      </motion.button>
       <Transition
         show={isOpen}
         as={React.Fragment}
@@ -194,39 +203,23 @@ const MobileMenu: React.FC = () => {
       >
         <Transition.Child
           as="div"
-          className="absolute top-20 right-0 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-4 z-50"
+          className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-50"
         >
           <nav>
-            <ul className="flex flex-col space-y-2 px-4">
-              <li>
-                <Link
-                  href="/"
-                  className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Startseite
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ueber_uns"
-                  className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Über uns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://discord.com/invite/G2Br635S4B"
-                  className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Discord
-                </Link>
-              </li>
+            <ul className="flex flex-col space-y-1">
+              <MobileNavLink href="/" onClick={() => setIsOpen(false)}>
+                Startseite
+              </MobileNavLink>
+              <MobileNavLink href="/ueber_uns" onClick={() => setIsOpen(false)}>
+                Über uns
+              </MobileNavLink>
+              <MobileNavLink
+                href="https://discord.com/invite/G2Br635S4B"
+                onClick={() => setIsOpen(false)}
+                external
+              >
+                Discord
+              </MobileNavLink>
             </ul>
           </nav>
         </Transition.Child>
@@ -234,3 +227,23 @@ const MobileMenu: React.FC = () => {
     </div>
   );
 };
+
+const MobileNavLink: React.FC<{
+  href: string;
+  children: React.ReactNode;
+  onClick: () => void;
+  external?: boolean;
+}> = ({ href, children, onClick, external = false }) => (
+  <li>
+    <Link
+      href={href}
+      className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200"
+      onClick={onClick}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
+      {children}
+    </Link>
+  </li>
+);
+
+export default Navbar;
