@@ -9,7 +9,6 @@ import React from "react";
 
 const Navbar: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -25,13 +24,6 @@ const Navbar: React.FC = () => {
         document.documentElement.classList.add("dark");
       }
     }
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
@@ -50,15 +42,14 @@ const Navbar: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-gray-900/90 backdrop-blur-sm shadow-lg"
-          : "bg-transparent"
-      }`}
+      className="fixed w-full z-50 bg-white dark:bg-gray-900/90 backdrop-blur-sm shadow-lg"
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-white">
+          <Link
+            href="/"
+            className="text-2xl font-bold text-gray-800 dark:text-white"
+          >
             SOLUNA
           </Link>
 
@@ -73,7 +64,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={toggleDarkMode}
-              className="p-2 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-300"
+              className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-300"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? (
@@ -83,7 +74,7 @@ const Navbar: React.FC = () => {
                 />
               ) : (
                 <MdDarkMode
-                  className="h-5 w-5 text-gray-300"
+                  className="h-5 w-5 text-gray-800 dark:text-gray-300"
                   aria-hidden="true"
                 />
               )}
@@ -95,7 +86,7 @@ const Navbar: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={toggleDarkMode}
-              className="mr-4 p-2 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-300"
+              className="mr-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-300"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? (
@@ -105,7 +96,7 @@ const Navbar: React.FC = () => {
                 />
               ) : (
                 <MdDarkMode
-                  className="h-5 w-5 text-gray-300"
+                  className="h-5 w-5 text-gray-800 dark:text-gray-300"
                   aria-hidden="true"
                 />
               )}
@@ -125,7 +116,7 @@ const NavLink: React.FC<{
 }> = ({ href, children, external = false }) => (
   <Link
     href={href}
-    className="text-gray-300 hover:text-white transition-colors duration-200"
+    className="text-gray-800 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
     {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
   >
     <motion.span
@@ -163,7 +154,7 @@ const MobileMenu: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full p-2"
+        className="text-gray-800 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full p-2"
         aria-label="Toggle menu"
         aria-expanded={isOpen}
       >
@@ -203,7 +194,7 @@ const MobileMenu: React.FC = () => {
       >
         <Transition.Child
           as="div"
-          className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-50"
+          className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-50"
         >
           <nav>
             <ul className="flex flex-col space-y-1">
@@ -237,7 +228,7 @@ const MobileNavLink: React.FC<{
   <li>
     <Link
       href={href}
-      className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200"
+      className="block px-4 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
       onClick={onClick}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
