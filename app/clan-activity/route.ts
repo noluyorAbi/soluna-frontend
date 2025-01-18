@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // API-Request durchführen
     const apiRes = await fetch(
-      "https://soluna-production-9501.up.railway.app/clan-activity",
+      "https://soluna.onrender.com/clan-activity",
       {
         method: "GET",
         headers: {
