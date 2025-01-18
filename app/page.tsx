@@ -1,10 +1,88 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { ChevronRight, BarChart2, Users, Gift } from "lucide-react";
+
+// Schritt 1: Funfacts definieren
+const funFacts = [
+  "Wussten Sie, dass Clans durchschnittlich 73% mehr Spaß haben?",
+  "Ein Clan ohne Spenden ist wie ein Dorf ohne Dorfbewohner!",
+  "Die meisten Clans bestehen aus 5 Leuten, die nur dann 10 sind.",
+  "Ein guter Clan ist wie eine Familie – aber ohne die nervigen Diskussionen!",
+  "Clans: Der einzige Ort, wo Verlieren manchmal genauso viel Spaß macht wie Gewinnen.",
+  "P.E.K.K.A bedeutet 'Perfect Enraged Knight Killer of Assassins'.",
+  "P.E.K.K.A bekommt doppelten Tesla-Schaden durch ihre Rüstung.",
+  "P.E.K.K.A verändert ihr Aussehen mit jedem Level.",
+  "Liam Neeson spielte in einer Super Bowl-Werbung für Clash of Clans.",
+  "Supercell verdiente 2015 über 5 Mio. USD pro Tag durch das Spiel.",
+  "Ein Spieler nutzte 5 iPads gleichzeitig für Clash of Clans.",
+  "Der erste Spieler mit 4000 Trophäen bekam 79k Follower.",
+  "Clash of Clans wurde in nur 6 Monaten entwickelt.",
+  "Das Spiel wurde von Backyard Monsters und Travian inspiriert.",
+  "Clash of Clans wurde 2012 für iOS und 2013 für Android veröffentlicht.",
+  "Nur 15 Entwickler arbeiteten an Clash of Clans.",
+  "Verborgene Teslas fügen P.E.K.K.A doppelten Schaden zu.",
+  "Der Barbaren-König liebt dunkles Elixier zum Frühstück.",
+  "Der Bauarbeiter verschwindet, wenn man ihm keinen Schlaf gönnt.",
+  "Spieler können in Clans ihre eigene Geschichte schreiben.",
+  "Die Bogenschützin hat den höchsten Trefferpunkt-Schrei.",
+  "Das 'Globus'-Symbol im Spiel erinnert an Supercells weltweite Community.",
+  "Ein Spieler hat 6 Monate lang keinen einzigen Angriff verpasst.",
+  "Die Heilzauber-Reichweite ist fast so groß wie ein Ballon-Angriff.",
+  "Spieler verbringen durchschnittlich 1 Stunde täglich in Clash of Clans.",
+  "Jeden Monat werden weltweit Milliarden von Clan-Kriegssternen gesammelt.",
+  "Das Design der Mauern wurde von mittelalterlichen Burgen inspiriert.",
+  "Das Dorf-Tutorial wurde seit 2012 über 100 Millionen Mal abgeschlossen.",
+  "Clash of Clans wurde in über 50 Sprachen übersetzt.",
+  "Supercell, das Unternehmen hinter Clash of Clans, wurde 2010 in Helsinki, Finnland, gegründet.",
+  "Clash of Clans war 2015 das am zweithöchsten verdienende Spiel im App Store.",
+  "Der Name P.E.K.K.A wurde durch einen Facebook-Wettbewerb ermittelt.",
+  "Clash of Clans hat weltweit über 500 Millionen Downloads erreicht.",
+  "Das Spiel hat eine eigene animierte Webserie namens 'Clash-A-Rama!'.",
+  "Der Inferno-Turm verursacht mehr Schaden, je länger er ein Ziel angreift.",
+  "Der Bauarbeiter hat einen geheimen Tanz, wenn man ihn antippt, während er nichts tut.",
+  "Es gibt einen versteckten Minispiel-Modus namens 'Builder Base', der 2017 eingeführt wurde.",
+  "Der 'Giga Tesla' wird freigeschaltet, wenn das Rathaus auf Level 12 aufgerüstet wird.",
+  "Clash of Clans hat eine eigene Esports-Szene mit internationalen Turnieren.",
+  "Der 'Grand Warden' ist der einzige Held, der sowohl Boden- als auch Lufteinheiten unterstützen kann.",
+  "Die 'Clan-Spiele' wurden 2017 eingeführt und bieten spezielle Belohnungen für Clan-Mitglieder.",
+  "Der 'Battle Machine' ist der erste Held in der Builder Base.",
+  "Clash of Clans feierte 2022 sein 10-jähriges Jubiläum mit besonderen Events.",
+  "Der 'Eiszauber' kann Verteidigungsgebäude für kurze Zeit einfrieren.",
+  "Es gibt über 2 Millionen aktive Clans weltweit.",
+  "Der 'Adlerartillerie' ist eine der stärksten Verteidigungen und wird auf Rathaus-Level 11 freigeschaltet.",
+  "Clash of Clans wurde von Spielen wie 'Backyard Monsters' und 'Travian' inspiriert.",
+  "Das Spiel erhielt mehrere Auszeichnungen, darunter den 'Best Game' Award im Jahr 2013.",
+  "Der 'Schutzzauber' kann Truppen für kurze Zeit unverwundbar machen.",
+];
+
+
+// Schritt 2: FunFacts-Komponente erstellen
+function FunFacts() {
+  const [currentFact, setCurrentFact] = useState("");
+
+  useEffect(() => {
+    // Initial zufälligen Funfact setzen
+    setCurrentFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
+
+    // Intervall zum Wechseln des Funfacts alle 5 Sekunden
+    const interval = setInterval(() => {
+      setCurrentFact(funFacts[Math.floor(Math.random() * funFacts.length)]);
+    }, 5000); // 5000 Millisekunden = 5 Sekunden
+
+    // Aufräumen des Intervalls bei Komponentenunmount
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className=" text-center text-sm text-gray-600 dark:text-gray-400">
+      <em>{currentFact}</em>
+    </div>
+  );
+}
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -133,9 +211,14 @@ export default function Home() {
               SOLUNA - Clan Daten laden
             </h2>
             <p className="text-lg sm:text-xl mb-8 max-w-2xl text-gray-700 dark:text-gray-300">
-              Bitte warten Sie, während die Clan-Daten verarbeitet werden.
+              Bitte warten Sie, während die Clan-Daten verarbeitet werden.{" "}
+              <br /> Dies kann bis zu einer Minute dauern.
             </p>
-            <div className="w-12 h-12 border-4 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+
+            {/* Schritt 3: FunFacts-Komponente einfügen */}
+            <FunFacts />
+
+            <div className="w-12 h-12 border-4 border-gray-400 border-t-transparent rounded-full animate-spin mt-6"></div>
           </motion.div>
         )}
       </main>
