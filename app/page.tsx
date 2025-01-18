@@ -25,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-white transition-colors duration-300">
+    <div className=" min-h-screen pb-8 sm:pb-0 flex flex-col bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-white transition-colors duration-300">
       <Head>
         <title>SOLUNA Clan-Aktivitäts-Dashboard</title>
         <meta
@@ -139,8 +139,6 @@ export default function Home() {
           </motion.div>
         )}
       </main>
-
-
     </div>
   );
 }
