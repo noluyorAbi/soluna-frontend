@@ -64,7 +64,7 @@ const Features: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 pb-32 dark:bg-gray-900 transition-colors duration-500">
+    <div className="min-h-screen flex flex-col bg-gray-50  dark:bg-gray-900 transition-colors duration-500">
       <Head>
         <title>Funktionen & Vorteile | SOLUNA</title>
         <meta
@@ -127,7 +127,7 @@ const Features: React.FC = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <button
               onClick={handleJoinClick}
-              className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium py-3 px-8 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
             >
               <span>SOLUNA jetzt beitreten</span>
               <ChevronRight className="ml-2 h-5 w-5" />
