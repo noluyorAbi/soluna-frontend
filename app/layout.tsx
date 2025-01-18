@@ -1,3 +1,5 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -17,39 +19,57 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "SOLUNA Dashboard",
-  description: "Dashboard for SOLUNA Clan activities, made by Alpi",
+  description: "Dashboard für SOLUNA Clan Aktivitäten, erstellt von Alpi",
   keywords: [
     "SOLUNA Dashboard",
-    "Clan Activities",
+    "Clan Aktivitäten",
     "Next.js",
     "React",
-    "Full-Stack Development",
+    "Full-Stack Entwicklung",
     "TailwindCSS",
     "Gaming Dashboard",
     "Clan Management",
-    "Web Developer",
+    "Web Entwickler",
   ],
   openGraph: {
-    url: "https://soluna-dashboard.com",
+    url: "https://soluna-frontend.vercel.app/",
     type: "website",
+    title: "SOLUNA Dashboard",
+    description: "Dashboard für SOLUNA Clan Aktivitäten, erstellt von Alpi",
     images: [
       {
-        url: "/og-image.png",
-        alt: "SOLUNA Dashboard - Manage Clan Activities",
-        width: 1200,
-        height: 675,
+        url: "https://opengraph.b-cdn.net/production/images/cc397e5f-fa6e-405b-a3e3-ec8e883832d7.png?token=4LUi2J75S8b5CVBVirtNRZZZ4ZoPzuLsY3CHbjR8k9Q&height=420&width=800&expires=33273239527",
+        alt: "SOLUNA Dashboard - Clan Aktivitäten verwalten",
+        width: 800,
+        height: 420,
       },
     ],
+    siteName: "SOLUNA Dashboard",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "SOLUNA Dashboard",
+    description: "Dashboard für SOLUNA Clan Aktivitäten, erstellt von Alpi",
+    images: [
+      "https://opengraph.b-cdn.net/production/images/cc397e5f-fa6e-405b-a3e3-ec8e883832d7.png?token=4LUi2J75S8b5CVBVirtNRZZZ4ZoPzuLsY3CHbjR8k9Q&height=420&width=800&expires=33273239527",
+    ],
+    site: "@soluna_dashboard", // Falls du einen Twitter-Handle hast
+    creator: "@alpi_handle", // Optional: Der Twitter-Handle des Erstellers
+  },
+  icons: {
+    icon: "/favicon.ico", // Pfad zu deinem Favicon
+    apple: "/apple-touch-icon.png", // Optional: Apple Touch Icon
+  },
+  // Weitere Metadaten können hier hinzugefügt werden
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className="dark">
+    <html lang="de" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
