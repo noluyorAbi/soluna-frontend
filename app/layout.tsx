@@ -17,7 +17,30 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "SOLUNA Dashboard",
-  description: "Made by Alpi",
+  description: "Dashboard for SOLUNA Clan activities, made by Alpi",
+  keywords: [
+    "SOLUNA Dashboard",
+    "Clan Activities",
+    "Next.js",
+    "React",
+    "Full-Stack Development",
+    "TailwindCSS",
+    "Gaming Dashboard",
+    "Clan Management",
+    "Web Developer",
+  ],
+  openGraph: {
+    url: "https://soluna-dashboard.com",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        alt: "SOLUNA Dashboard - Manage Clan Activities",
+        width: 1200,
+        height: 675,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
