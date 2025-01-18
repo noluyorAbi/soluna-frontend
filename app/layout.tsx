@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import Footer from "@/Footer";
+import Footer from "@/app/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -74,7 +74,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <Navbar />
-        <main className="flex-grow pt-8 bg-gray-50 dark:bg-gray-900 transition-all">
+        <main className="flex-grow pt-14 bg-gray-50 dark:bg-gray-900 transition-all">
           {children}
         </main>
         <Footer />
