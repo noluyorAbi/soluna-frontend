@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import Head from "next/head";
-import Link from "next/link";
-import { ChevronRight, Shield, Database, Lock } from "lucide-react";
+import {  Shield, Database, Lock } from "lucide-react";
 
 export default function Datenschutzrichtlinien() {
   const fadeIn = {
