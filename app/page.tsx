@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { ChevronRight, BarChart2, Users, Gift } from "lucide-react";
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -16,6 +17,13 @@ export default function Home() {
     }, 50);
   };
 
+  const handleJoinClanClick = () => {
+    window.open(
+      "https://link.clashofclans.com/en?action=OpenClanProfile&tag=2LUVL2QGL",
+      "_blank"
+    );
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-white transition-colors duration-300">
       <Head>
@@ -25,8 +33,6 @@ export default function Home() {
           content="Verfolgen Sie die Aktivität der SOLUNA Clan-Mitglieder in Echtzeit."
         />
       </Head>
-
-
 
       {/* Main content */}
       <main className="flex-grow flex flex-col items-center justify-center text-center px-4 py-8 sm:py-16">
@@ -83,19 +89,38 @@ export default function Home() {
                 </p>
               </motion.div>
             </div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block"
-            >
-              <button
-                onClick={handleButtonClick}
-                className="group bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <span>Zum Aktivitäts-Plot</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </motion.div>
+                <button
+                  onClick={handleButtonClick}
+                  className="group bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <span>Zum Aktivitäts-Plot</span>
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <button
+                  onClick={handleJoinClanClick}
+                  className="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium py-3 px-8 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <span>Werde Teil von SOLUNA</span>
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </motion.div>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8"
+            ></motion.div>
           </motion.div>
         ) : (
           <motion.div
@@ -115,27 +140,7 @@ export default function Home() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 py-6 shadow-t transition-colors duration-300">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm">
-            © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-gray-800 dark:text-gray-200">
-              SOLUNA
-            </span>
-            . Alle Rechte vorbehalten.
-          </p>
-          <p className="mt-2 text-sm">
-            <a
-              href="/datenschutzrichtlinien"
-              className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300"
-              rel="noopener noreferrer"
-            >
-              Datenschutzrichtlinien
-            </a>
-          </p>
-        </div>
-      </footer>
+
     </div>
   );
 }

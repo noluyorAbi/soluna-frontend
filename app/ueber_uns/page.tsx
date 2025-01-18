@@ -64,12 +64,12 @@ const Features: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+    <div className="min-h-screen flex flex-col bg-gray-50 pb-32 dark:bg-gray-900 transition-colors duration-500">
       <Head>
         <title>Funktionen & Vorteile | SOLUNA</title>
         <meta
           name="description"
-          content="Entdecken Sie die Vorteile von SOLUNA: Stärken Sie Ihren Clan durch verbesserte Aktivität und Zusammenarbeit."
+          content="Werde Teil von SOLUNA: Erlebe ein neues Level der Clan-Aktivität und Zusammenarbeit."
         />
       </Head>
 
@@ -84,32 +84,33 @@ const Features: React.FC = () => {
             Gemeinsam stärker mit SOLUNA
           </h1>
           <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl">
-            Entdecken Sie, wie SOLUNA Ihren Clan transformiert.
+            Entdecke die Vorteile, die SOLUNA für dich als Clan bringt. Lass uns
+            gemeinsam neue Erfolge feiern!
           </p>
         </motion.section>
 
         <FeatureSection
-          title="SOLUNA: Unser Clan, unsere Regeln"
-          description="SOLUNA ist mehr als nur ein Name – es ist unser Clan und unsere Gemeinschaft. Dieses Tool wurde von uns speziell entwickelt, um SOLUNA noch aktiver und erfolgreicher zu machen. Ob Spenden, Angriffe oder Strategien: Mit dem SOLUNA-Dashboard bleiben wir immer auf dem Laufenden und arbeiten zusammen, um stärker zu werden."
+          title="SOLUNA: Unser Clan, unser Zusammenhalt"
+          description="SOLUNA ist nicht nur ein Name – es ist eine lebendige Gemeinschaft. Unser Tool hilft uns, noch aktiver und erfolgreicher zu werden. Von Spenden bis hin zu strategischen Angriffen – wir bleiben immer auf dem neuesten Stand und schaffen es, zusammen immer stärker zu werden."
           icon={PieChart}
         />
 
         <FeatureSection
-          title="Aktiv bleiben leicht gemacht"
-          description="Wie oft habt ihr euch gefragt, wer in SOLUNA wie viel spendet oder wer die meisten Angriffe durchführt? Unser Tool bringt Licht ins Dunkel und zeigt euch auf einen Blick, wie aktiv jedes SOLUNA-Mitglied ist. So können wir unsere Leistungen besser einschätzen und uns gegenseitig motivieren."
+          title="Aktivität auf einen Blick"
+          description="Egal, wer am meisten spendet oder die meisten Angriffe führt – unser Tool zeigt es uns sofort. So können wir die Leistungen jedes Mitglieds nachvollziehen und uns gegenseitig zu Höchstleistungen anspornen."
           icon={Clock}
           reversed
         />
 
         <FeatureSection
-          title="Echtzeit-Feedback für den Erfolg"
-          description="Mit Echtzeit-Updates behält der gesamte SOLUNA-Clan den Überblick. Ob während eines Krieges oder in der täglichen Planung – das SOLUNA-Dashboard sorgt dafür, dass jeder die richtigen Informationen hat, um die besten Entscheidungen für unseren Clan zu treffen."
+          title="Echtzeit-Updates für den Erfolg"
+          description="Ob im Krieg oder bei der Planung – mit den Echtzeit-Updates von SOLUNA haben wir immer die richtigen Informationen, um die besten Entscheidungen zu treffen und unserem Clan zum Erfolg zu verhelfen."
           icon={TrendingUp}
         />
 
         <FeatureSection
-          title="Motivation und Gemeinschaft in SOLUNA"
-          description="Unser Ziel war es, nicht nur ein praktisches Tool zu schaffen, sondern auch den Spaß am Spiel in SOLUNA zu fördern. Das SOLUNA-Dashboard hilft uns, unsere Fortschritte zu feiern und als Gemeinschaft zusammenzuwachsen. Jeder Punkt, jeder Sieg und jede Spende trägt zum Erfolg unseres SOLUNA-Clans bei."
+          title="Gemeinschaft und Motivation"
+          description="SOLUNA ist nicht nur ein Tool – es ist unser Herzstück. Wir feiern gemeinsam unsere Erfolge, motivieren uns gegenseitig und wachsen als Clan zusammen. Jeder Angriff, jeder Sieg und jede Spende bringt uns näher ans Ziel."
           icon={Users}
           reversed
         />
@@ -121,40 +122,19 @@ const Features: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8">
-            Werden Sie Teil der aktiven und motivierten SOLUNA-Gemeinschaft!
+            Sei auch du Teil der starken und aktiven SOLUNA-Gemeinschaft!
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <button
               onClick={handleJoinClick}
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
             >
-              <span>SOLUNA beitreten</span>
+              <span>SOLUNA jetzt beitreten</span>
               <ChevronRight className="ml-2 h-5 w-5" />
             </button>
           </motion.div>
         </motion.section>
       </main>
-
-      <footer className="bg-gray-800 dark:bg-gray-900 text-gray-400 dark:text-gray-500 py-8 transition-colors duration-500">
-        <div className="container mx-auto px-6 text-center">
-          <p className="mb-2 text-sm sm:text-base">
-            © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-white dark:text-gray-200">
-              SOLUNA
-            </span>
-            . Alle Rechte vorbehalten.
-          </p>
-          <p className="text-sm sm:text-base">
-            <a
-              href="/datenschutzrichtlinien"
-              className="text-blue-400 dark:text-blue-300 hover:text-white dark:hover:text-gray-200 transition-colors duration-300"
-              rel="noopener noreferrer"
-            >
-              Datenschutzrichtlinien
-            </a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
